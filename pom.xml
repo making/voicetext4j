@@ -3,10 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <name>VoiceText4J</name>
     <groupId>am.ik.voicetext</groupId>
     <artifactId>voicetext4j</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>0.9.0</version>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -18,7 +18,6 @@
         <url>https://github.com/making/voicetext4j</url>
         <connection>scm:git:git@github.com:making/voicetext4j.git</connection>
         <developerConnection>scm:git:git@github.com:making/voicetext4j.git</developerConnection>
-        <tag>HEAD</tag>
     </scm>
     <url>https://github.com/making/voicetext4j</url>
     <description>Java Client Library for VoiceText Web API (https://cloud.voicetext.jp/webapi)</description>
