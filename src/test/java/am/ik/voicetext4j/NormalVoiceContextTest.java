@@ -62,7 +62,7 @@ public class NormalVoiceContextTest {
         new NormalVoiceContext("hello", "show")
                 .pitch(201)
                 .speed(200)
-                .volume(150)
+                .volume(200)
                 .build().getBody();
     }
 
@@ -72,8 +72,8 @@ public class NormalVoiceContextTest {
         expectedException.expect(IllegalArgumentException.class);
         new NormalVoiceContext("hello", "show")
                 .pitch(49)
-                .speed(200)
-                .volume(150)
+                .speed(400)
+                .volume(200)
                 .build().getBody();
     }
 
@@ -83,7 +83,7 @@ public class NormalVoiceContextTest {
         new NormalVoiceContext("hello", "show")
                 .pitch(200)
                 .speed(401)
-                .volume(150)
+                .volume(200)
                 .build().getBody();
     }
 
@@ -94,7 +94,7 @@ public class NormalVoiceContextTest {
         new NormalVoiceContext("hello", "show")
                 .pitch(200)
                 .speed(49)
-                .volume(150)
+                .volume(200)
                 .build().getBody();
     }
 

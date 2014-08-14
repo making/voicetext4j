@@ -28,6 +28,7 @@ public class VoiceTextUrlConnectionClient {
         connection.setRequestMethod("POST");
         connection.setChunkedStreamingMode(CHUNK_SIZE);
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        connection.setRequestProperty("User-Agent", "VoiceText4J");
         connection.setDoOutput(true);
         connection.getOutputStream().write(fieldsBuilder.getBody());
     }
