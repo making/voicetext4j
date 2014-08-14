@@ -27,7 +27,7 @@ public class VoiceTextResponse {
         }
     }
 
-    public void say() throws InterruptedException {
+    public void play() throws InterruptedException {
         Clip clip = clip();
         clip.start();
         final CountDownLatch latch = new CountDownLatch(1);

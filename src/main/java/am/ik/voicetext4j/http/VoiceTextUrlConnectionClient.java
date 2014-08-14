@@ -16,7 +16,7 @@ public class VoiceTextUrlConnectionClient {
     static final int CHUNK_SIZE = 4096;
     static final String API_ENDPOINT = System.getProperty("voicetext.endpoint", "https://api.voicetext.jp/v1/tts");
 
-    HttpURLConnection openConection() throws IOException {
+    HttpURLConnection openConnection() throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(API_ENDPOINT).openConnection();
         connection.setConnectTimeout(CONNECT_TIMEOUT_MILLIS);
         connection.setReadTimeout(READ_TIMEOUT_MILLIS);
@@ -53,7 +53,7 @@ public class VoiceTextUrlConnectionClient {
 
     public VoiceTextResponse execute(VoiceTextFields fields, String apiKey) {
         try {
-            HttpURLConnection connection = openConection();
+            HttpURLConnection connection = openConnection();
             connection.setRequestProperty("Authorization", "Basic " + DatatypeConverter.printBase64Binary((apiKey + ":").getBytes()));
             prepareRequest(connection, fields);
             return new VoiceTextResponse(readResponse(connection));

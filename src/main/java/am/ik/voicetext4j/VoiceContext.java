@@ -20,16 +20,25 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
     }
 
     public T pitch(int pitch) {
+        if (pitch < 50 || pitch > 200) {
+            throw new IllegalArgumentException("'pitch' must be between 50 and 200.");
+        }
         this.pitch = pitch;
         return (T) this;
     }
 
     public T speed(int speed) {
+        if (speed < 50 || speed > 400) {
+            throw new IllegalArgumentException("'speed' must be between 50 and 400.");
+        }
         this.speed = speed;
         return (T) this;
     }
 
     public T volume(int volume) {
+        if (volume < 50 || volume > 200) {
+            throw new IllegalArgumentException("'volume' must be between 50 and 200.");
+        }
         this.volume = volume;
         return (T) this;
     }
@@ -43,13 +52,13 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
                 .put("volume", String.valueOf(volume));
     }
 
-    public void say(String apiKey) throws InterruptedException {
+    public void speak(String apiKey) throws InterruptedException {
         new VoiceTextUrlConnectionClient()
                 .execute(build(), apiKey)
-                .say();
+                .play();
     }
 
-    public void say() throws InterruptedException {
-        say(System.getProperty("voicetext.apikey"));
+    public void speak() throws InterruptedException {
+        speak(System.getProperty("voicetext.apikey"));
     }
 }

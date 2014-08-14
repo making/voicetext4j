@@ -8,7 +8,6 @@ public class VoiceTextFields {
     final ByteArrayOutputStream content = new ByteArrayOutputStream();
 
     public VoiceTextFields put(String name, String value) {
-        System.out.println(name + "=" + value);
         if (content.size() > 0) {
             content.write('&');
         }

@@ -24,8 +24,12 @@ public class EmotionalVoiceContext extends VoiceContext<EmotionalVoiceContext> {
 
     @Override
     protected VoiceTextFields build() {
-        return super.build()
-                .put("emotion", emotion.name().toLowerCase())
-                .put("emotion_level", String.valueOf(emotionLevel.value()));
+        VoiceTextFields fields = super.build();
+        if (emotion != null) {
+            fields.put("emotion", emotion.name().toLowerCase())
+                    .put("emotion_level", String.valueOf(emotionLevel.value()));
+        }
+        return fields;
+
     }
 }

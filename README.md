@@ -16,9 +16,9 @@ Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
                     .pitch(105)
                     .speed(105)
                     .emotion(Emotion.HAPPINESS, Emotion.Level.HIGH)
-                    .say();
+                    .speak();
                     
-            // you can use say("API_KEY") instead of System.setProperty
+            // you can use speak("API_KEY") instead of System.setProperty
         }
     }
 
