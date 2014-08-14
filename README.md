@@ -33,14 +33,21 @@ You can use VoiceText4J with the following setting in pom.xml:
 
 ## Quick Usage with Groovy and Grab
 
+`test.groovy`
+
     @Grab("am.ik.voicetext:voicetext4j:0.9.0")
     import am.ik.voicetext4j.*;
+    
     System.setProperty("voicetext.apikey", "API_KEY");
+    
     NormalSpeaker.SHOW.ready("こんにちは").speak();
     Speaker.HARUKA.ready("こんにちは").speak();
     Speaker.HIKARI.ready("こんにちは").speak();
     Speaker.TAKERU.ready("こんにちは").speak();
 
+run
+
+    $ groovy test.groovy
 
 
 ## License
