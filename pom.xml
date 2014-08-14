@@ -15,7 +15,7 @@
         </license>
     </licenses>
     <scm>
-        <url>git@github.com:making/voicetext4j.git</url>
+        <url>https://github.com/making/voicetext4j</url>
         <connection>scm:git:git@github.com:making/voicetext4j.git</connection>
         <developerConnection>scm:git:git@github.com:making/voicetext4j.git</developerConnection>
         <tag>HEAD</tag>
@@ -73,12 +73,6 @@
             <uniqueVersion>false</uniqueVersion>
             <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshot</id>
-            <name>Nexus Snapshot Repository</name>
-            <uniqueVersion>false</uniqueVersion>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
     </distributionManagement>
 
     <dependencies>
