@@ -17,7 +17,7 @@
     <scm>
         <url>git@github.com:making/voicetext4j.git</url>
         <connection>scm:git:git@github.com:making/voicetext4j.git</connection>
-        <developerConnection>scm:git@github.com:making/voicetext4j.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:making/voicetext4j.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <url>https://github.com/making/voicetext4j</url>
