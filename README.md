@@ -20,7 +20,7 @@ You can use VoiceText4J with the following setting in pom.xml:
         public void testSay() throws Exception {
             System.setProperty("voicetext.apikey", "API_KEY");
             
-            Speaker.HARUKA.ready()
+            EmotionalSpeaker.HARUKA.ready()
                     .pitch(105)
                     .speed(105)
                     .very().happy()
