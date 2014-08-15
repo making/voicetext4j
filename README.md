@@ -31,7 +31,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     }
 
 
-## Quick Usage with Groovy and Grape
+## Quick Start using Groovy and Grape
 
 `test.groovy`
 
