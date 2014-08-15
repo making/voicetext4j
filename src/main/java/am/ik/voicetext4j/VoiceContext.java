@@ -18,20 +18,19 @@ package am.ik.voicetext4j;
 
 
 import am.ik.voicetext4j.http.VoiceTextFields;
+import am.ik.voicetext4j.http.VoiceTextResponse;
 import am.ik.voicetext4j.http.VoiceTextUrlConnectionClient;
 
 import java.io.Serializable;
 
 @SuppressWarnings("unchecked")
 public abstract class VoiceContext<T extends VoiceContext> implements Serializable {
-    final String text;
     final String speaker;
     int pitch = 100;
     int speed = 100;
     int volume = 100;
 
-    public VoiceContext(String text, String speaker) {
-        this.text = text;
+    public VoiceContext(String speaker) {
         this.speaker = speaker;
     }
 
@@ -61,20 +60,35 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
 
     protected VoiceTextFields build() {
         return new VoiceTextFields()
-                .put("text", text)
                 .put("speaker", speaker)
                 .put("pitch", String.valueOf(pitch))
                 .put("speed", String.valueOf(speed))
                 .put("volume", String.valueOf(volume));
     }
 
-    public void speak(String apiKey) throws InterruptedException {
-        new VoiceTextUrlConnectionClient()
-                .execute(build(), apiKey)
-                .play();
+    public VoiceTextResponse getResponse(String text, String apiKey) {
+        if (text == null || text.length() < 1 || text.length() > 200) {
+            throw new IllegalArgumentException("the length of 'text' must be between 1 and 200.");
+        }
+        if (apiKey == null || apiKey.isEmpty()) {
+            throw new IllegalArgumentException("'apiKey' is required.");
+        }
+        VoiceTextFields fields = build().put("text", text);
+        return new VoiceTextUrlConnectionClient()
+                .execute(fields, apiKey);
     }
 
-    public void speak() throws InterruptedException {
-        speak(System.getProperty("voicetext.apikey"));
+    public VoiceTextResponse getResponse(String text) {
+        return getResponse(text, System.getProperty("voicetext.apikey"));
     }
+
+    public void speak(String text, String apiKey) throws InterruptedException {
+        getResponse(text, apiKey).play();
+    }
+
+    public void speak(String text) {
+        getResponse(text).play();
+    }
+
+
 }

@@ -29,56 +29,125 @@ public class EmotionalVoiceContextTest {
 
     @Test
     public void testBuild() throws Exception {
-        byte[] param = new EmotionalVoiceContext("hello", "haruka")
+        byte[] param = new EmotionalVoiceContext("haruka")
                 .build().getBody();
-        assertThat(param, is("text=hello&speaker=haruka&pitch=100&speed=100&volume=100".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=100&speed=100&volume=100".getBytes()));
     }
 
 
     @Test
     public void testJapanese() throws Exception {
-        byte[] param = new EmotionalVoiceContext("こんにちは", "haruka")
+        byte[] param = new EmotionalVoiceContext("haruka")
                 .build().getBody();
-        assertThat(param, is("text=%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF&speaker=haruka&pitch=100&speed=100&volume=100".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=100&speed=100&volume=100".getBytes()));
     }
 
     @Test
     public void testBuild_setAll() throws Exception {
-        byte[] param = new EmotionalVoiceContext("hello", "haruka")
+        byte[] param = new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.ANGER, Emotion.Level.HIGH)
                 .pitch(120)
                 .speed(200)
                 .volume(150)
                 .build().getBody();
-        assertThat(param, is("text=hello&speaker=haruka&pitch=120&speed=200&volume=150&emotion=anger&emotion_level=2".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=anger&emotion_level=2".getBytes()));
     }
 
     @Test
     public void testBuild_setAllMax() throws Exception {
-        byte[] param = new EmotionalVoiceContext("hello", "haruka")
+        byte[] param = new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.ANGER, Emotion.Level.HIGH)
                 .pitch(200)
                 .speed(400)
                 .volume(200)
                 .build().getBody();
-        assertThat(param, is("text=hello&speaker=haruka&pitch=200&speed=400&volume=200&emotion=anger&emotion_level=2".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=200&speed=400&volume=200&emotion=anger&emotion_level=2".getBytes()));
     }
 
     @Test
     public void testBuild_setAllMin() throws Exception {
-        byte[] param = new EmotionalVoiceContext("hello", "haruka")
+        byte[] param = new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.HAPPINESS)
                 .pitch(50)
                 .speed(50)
                 .volume(50)
                 .build().getBody();
-        assertThat(param, is("text=hello&speaker=haruka&pitch=50&speed=50&volume=50&emotion=happiness&emotion_level=1".getBytes()));
+        assertThat(param, is("speaker=haruka&pitch=50&speed=50&volume=50&emotion=happiness&emotion_level=1".getBytes()));
+    }
+
+    @Test
+    public void testBuild_angry() throws Exception {
+        byte[] param = new EmotionalVoiceContext("haruka")
+                .angry()
+                .pitch(120)
+                .speed(200)
+                .volume(150)
+                .build().getBody();
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=anger&emotion_level=1".getBytes()));
+    }
+
+    @Test
+    public void testBuild_veryAngry() throws Exception {
+        byte[] param = new EmotionalVoiceContext("haruka")
+                .very()
+                .angry()
+                .pitch(120)
+                .speed(200)
+                .volume(150)
+                .build().getBody();
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=anger&emotion_level=2".getBytes()));
+    }
+
+    @Test
+    public void testBuild_happy() throws Exception {
+        byte[] param = new EmotionalVoiceContext("haruka")
+                .happy()
+                .pitch(120)
+                .speed(200)
+                .volume(150)
+                .build().getBody();
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=happiness&emotion_level=1".getBytes()));
+    }
+
+    @Test
+    public void testBuild_veryHappy() throws Exception {
+        byte[] param = new EmotionalVoiceContext("haruka")
+                .very()
+                .happy()
+                .pitch(120)
+                .speed(200)
+                .volume(150)
+                .build().getBody();
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=happiness&emotion_level=2".getBytes()));
+    }
+
+    @Test
+    public void testBuild_sad() throws Exception {
+        byte[] param = new EmotionalVoiceContext("haruka")
+                .sad()
+                .pitch(120)
+                .speed(200)
+                .volume(150)
+                .build().getBody();
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=sadness&emotion_level=1".getBytes()));
+    }
+
+    @Test
+    public void testBuild_verySad() throws Exception {
+        byte[] param = new EmotionalVoiceContext("haruka")
+                .very()
+                .sad()
+                .pitch(120)
+                .speed(200)
+                .volume(150)
+                .build().getBody();
+        assertThat(param, is("speaker=haruka&pitch=120&speed=200&volume=150&emotion=sadness&emotion_level=2".getBytes()));
     }
 
     @Test
     public void testBuild_setLargePitch() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        new EmotionalVoiceContext("hello", "haruka")
+        new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.HAPPINESS)
                 .pitch(201)
                 .speed(200)
@@ -90,7 +159,7 @@ public class EmotionalVoiceContextTest {
     @Test
     public void testBuild_setSmallPitch() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        new EmotionalVoiceContext("hello", "haruka")
+        new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.HAPPINESS)
                 .pitch(49)
                 .speed(200)
@@ -101,7 +170,7 @@ public class EmotionalVoiceContextTest {
     @Test
     public void testBuild_setLargeSpeed() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        new EmotionalVoiceContext("hello", "haruka")
+        new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.HAPPINESS)
                 .pitch(200)
                 .speed(401)
@@ -113,7 +182,7 @@ public class EmotionalVoiceContextTest {
     @Test
     public void testBuild_setSmallSpeed() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        new EmotionalVoiceContext("hello", "haruka")
+        new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.HAPPINESS)
                 .pitch(200)
                 .speed(49)
@@ -125,7 +194,7 @@ public class EmotionalVoiceContextTest {
     @Test
     public void testBuild_setLargeVolume() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        new EmotionalVoiceContext("hello", "haruka")
+        new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.HAPPINESS)
                 .pitch(200)
                 .speed(400)
@@ -137,7 +206,7 @@ public class EmotionalVoiceContextTest {
     @Test
     public void testBuild_setSmallVolume() throws Exception {
         expectedException.expect(IllegalArgumentException.class);
-        new EmotionalVoiceContext("hello", "haruka")
+        new EmotionalVoiceContext("haruka")
                 .emotion(Emotion.HAPPINESS)
                 .pitch(200)
                 .speed(400)

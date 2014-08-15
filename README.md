@@ -20,13 +20,13 @@ You can use VoiceText4J with the following setting in pom.xml:
         public void testSay() throws Exception {
             System.setProperty("voicetext.apikey", "API_KEY");
             
-            Speaker.HARUKA.ready("おはようございます")
+            Speaker.HARUKA.ready()
                     .pitch(105)
                     .speed(105)
-                    .emotion(Emotion.HAPPINESS, Emotion.Level.HIGH)
-                    .speak();
+                    .very().happy()
+                    .speak("おはようございます");
                     
-            // you can use speak("API_KEY") instead of System.setProperty("voicetext.apikey", "API_KEY")
+            // you can use speak(text, "API_KEY") instead of using System.setProperty("voicetext.apikey", "API_KEY")
         }
     }
 
@@ -35,20 +35,31 @@ You can use VoiceText4J with the following setting in pom.xml:
 
 `test.groovy`
 
-    @Grab("am.ik.voicetext:voicetext4j:0.9.0")
+    @Grab("am.ik.voicetext:voicetext4j:0.10.0")
     import am.ik.voicetext4j.*;
     
     System.setProperty("voicetext.apikey", "API_KEY");
     
-    NormalSpeaker.SHOW.ready("こんにちは").speak();
-    Speaker.HARUKA.ready("こんにちは").speak();
-    Speaker.HIKARI.ready("こんにちは").speak();
-    Speaker.TAKERU.ready("こんにちは").speak();
+    Speaker.SHOW.ready().speak("こんにちは");
+    EmotionalSpeaker.HARUKA.ready().speak("こんにちは");
+    EmotionalSpeaker.HIKARI.ready().speak("こんにちは");
+    EmotionalSpeaker.TAKERU.ready().speak("こんにちは");
 
 run
 
     $ groovy test.groovy
+    
+### Change emotion
 
+`EmotionalSpeaker`s can be changed their emotion like the following:
+
+    EmotionalSpeaker.HARUKA.ready().speak("こんにちは");
+    EmotionalSpeaker.HARUKA.ready().angry().speak("こんにちは");
+    EmotionalSpeaker.HARUKA.ready().very().angry().speak("こんにちは");
+    EmotionalSpeaker.HARUKA.ready().happy().speak("こんにちは");
+    EmotionalSpeaker.HARUKA.ready().very().happy().speak("こんにちは");
+    EmotionalSpeaker.HARUKA.ready().sad().speak("こんにちは");
+    EmotionalSpeaker.HARUKA.ready().very().sad().speak("こんにちは");
 
 ## License
 

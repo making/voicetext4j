@@ -43,7 +43,7 @@ public class VoiceTextResponse {
         }
     }
 
-    public void play() throws InterruptedException {
+    public void play() {
         Clip clip = clip();
         clip.start();
         final CountDownLatch latch = new CountDownLatch(1);
@@ -55,7 +55,11 @@ public class VoiceTextResponse {
                 }
             }
         });
-        latch.await();
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         clip.close();
     }
 }

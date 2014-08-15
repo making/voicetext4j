@@ -16,13 +16,11 @@
 
 package am.ik.voicetext4j;
 
-
-public enum NormalSpeaker implements Speakable<NormalVoiceContext> {
-    SHOW;
+public enum EmotionalSpeaker implements Speakable<EmotionalVoiceContext> {
+    HARUKA, HIKARI, TAKERU;
 
     @Override
-    @SuppressWarnings("unchecked")
-    public NormalVoiceContext ready(String text) {
-        return new NormalVoiceContext(text, this.name().toLowerCase());
+    public EmotionalVoiceContext ready() {
+        return new EmotionalVoiceContext(this.name().toLowerCase());
     }
 }
