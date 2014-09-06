@@ -17,7 +17,7 @@
 package am.ik.voicetext4j;
 
 public enum EmotionalSpeaker implements Speakable<EmotionalVoiceContext> {
-    HARUKA, HIKARI, TAKERU;
+    HARUKA, HIKARI, TAKERU, SANTA;
 
     @Override
     public EmotionalVoiceContext ready() {
