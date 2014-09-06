@@ -6,7 +6,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     <dependency>
       <groupId>am.ik.voicetext</groupId>
       <artifactId>voicetext4j</artifactId>
-      <version>0.10.0</version>
+      <version>0.11.0</version>
     </dependency>
 
 ## Usage
@@ -44,6 +44,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     EmotionalSpeaker.HARUKA.ready().speak("こんにちは");
     EmotionalSpeaker.HIKARI.ready().speak("こんにちは");
     EmotionalSpeaker.TAKERU.ready().speak("こんにちは");
+    EmotionalSpeaker.SANTA.ready().speak("メリークリスマス"); // new speaker from 0.11.0
 
 run
 
