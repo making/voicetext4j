@@ -35,7 +35,7 @@ You can use VoiceText4J with the following setting in pom.xml:
 
 `test.groovy`
 
-    @Grab("am.ik.voicetext:voicetext4j:0.10.0")
+    @Grab("am.ik.voicetext:voicetext4j:0.12.0")
     import am.ik.voicetext4j.*;
     
     System.setProperty("voicetext.apikey", "API_KEY");
@@ -45,6 +45,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     EmotionalSpeaker.HIKARI.ready().speak("こんにちは");
     EmotionalSpeaker.TAKERU.ready().speak("こんにちは");
     EmotionalSpeaker.SANTA.ready().speak("メリークリスマス"); // new speaker from 0.11.0
+    EmotionalSpeaker.TAKERU.ready().speak("こんにちは"); // new speaker from 0.12.0
 
 run
 

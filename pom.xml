@@ -6,7 +6,7 @@
     <name>VoiceText4J</name>
     <groupId>am.ik.voicetext</groupId>
     <artifactId>voicetext4j</artifactId>
-    <version>0.12.0-SNAPSHOT</version>
+    <version>0.12.0</version>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
