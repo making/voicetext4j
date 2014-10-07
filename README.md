@@ -45,7 +45,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     EmotionalSpeaker.HIKARI.ready().speak("こんにちは");
     EmotionalSpeaker.TAKERU.ready().speak("こんにちは");
     EmotionalSpeaker.SANTA.ready().speak("メリークリスマス"); // new speaker from 0.11.0
-    EmotionalSpeaker.TAKERU.ready().speak("こんにちは"); // new speaker from 0.12.0
+    EmotionalSpeaker.BEAR.ready().speak("こんにちは"); // new speaker from 0.12.0
 
 run
 
