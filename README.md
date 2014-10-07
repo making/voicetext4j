@@ -6,7 +6,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     <dependency>
       <groupId>am.ik.voicetext</groupId>
       <artifactId>voicetext4j</artifactId>
-      <version>0.11.0</version>
+      <version>0.12.0</version>
     </dependency>
 
 ## Usage
