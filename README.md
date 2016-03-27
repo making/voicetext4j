@@ -33,7 +33,7 @@ You can use VoiceText4J with the following setting in pom.xml:
         }
     }
 
-`speak(text)` is non-blocking and returns `CompletableFuture<String>`.
+`speak(text)` is non-blocking and returns `CompletableFuture<Void>`.
 To turn this to blocking, `get()` should be called.
 
 
