@@ -8,7 +8,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     <dependency>
       <groupId>am.ik.voicetext</groupId>
       <artifactId>voicetext4j</artifactId>
-      <version>0.12.0</version>
+      <version>1.0.0</version>
     </dependency>
 
 ## Usage
@@ -26,12 +26,23 @@ You can use VoiceText4J with the following setting in pom.xml:
                     .pitch(105)
                     .speed(105)
                     .very().happy()
-                    .speak("おはようございます");
+                    .speak("おはようございます")
+                    .get(); // blocking
                     
             // you can use speak(text, "API_KEY") instead of using System.setProperty("voicetext.apikey", "API_KEY")
         }
     }
 
+`speak(text)` is non-blocking and returns `CompletableFuture<String>`.
+To turn this to blocking, `get()` should be called.
+
+
+    CompletableFuture<Void> f = EmotionalSpeaker.HARUKA.ready()
+                                            .pitch(105)
+                                            .speed(105)
+                                            .very().happy()
+                                            .speak("おはようございます")
+                                            .thenAccept(x -> System.out.println("done"));
 
 ## Quick Start using Groovy and Grape
 
@@ -47,7 +58,7 @@ You can use VoiceText4J with the following setting in pom.xml:
     EmotionalSpeaker.HIKARI.ready().speak("こんにちは");
     EmotionalSpeaker.TAKERU.ready().speak("こんにちは");
     EmotionalSpeaker.SANTA.ready().speak("メリークリスマス"); // new speaker from 0.11.0
-    EmotionalSpeaker.BEAR.ready().speak("こんにちは"); // new speaker from 0.12.0
+    EmotionalSpeaker.BEAR.ready().speak("こんにちは").get(); // new speaker from 0.12.0
 
 run
 
