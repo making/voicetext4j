@@ -1,6 +1,8 @@
 # VoiceText4J
 Java Client Library for [VoiceText Web API](https://cloud.voicetext.jp/webapi)
 
+[![Build Status](https://travis-ci.org/making/voicetext4j.svg?branch=master)](https://travis-ci.org/making/voicetext4j)
+
 You can use VoiceText4J with the following setting in pom.xml:
 
     <dependency>
