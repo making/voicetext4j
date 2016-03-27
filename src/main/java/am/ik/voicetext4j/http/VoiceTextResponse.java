@@ -18,6 +18,7 @@ package am.ik.voicetext4j.http;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 
 public class VoiceTextResponse {
@@ -43,23 +44,16 @@ public class VoiceTextResponse {
         }
     }
 
-    public void play() {
+    public CompletableFuture<Void> play() {
         Clip clip = clip();
-        clip.start();
-        final CountDownLatch latch = new CountDownLatch(1);
-        clip.addLineListener(new LineListener() {
-            @Override
-            public void update(LineEvent event) {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    latch.countDown();
-                }
+        CompletableFuture<Void> future = new CompletableFuture<Void>()
+                .whenComplete((x, e) -> clip.close());
+        clip.addLineListener(event -> {
+            if (event.getType() == LineEvent.Type.STOP) {
+                future.complete(null);
             }
         });
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-        clip.close();
+        clip.start();
+        return future;
     }
 }

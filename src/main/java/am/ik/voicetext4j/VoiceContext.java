@@ -22,6 +22,7 @@ import am.ik.voicetext4j.http.VoiceTextResponse;
 import am.ik.voicetext4j.http.VoiceTextUrlConnectionClient;
 
 import java.io.Serializable;
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("unchecked")
 public abstract class VoiceContext<T extends VoiceContext> implements Serializable {
@@ -82,12 +83,12 @@ public abstract class VoiceContext<T extends VoiceContext> implements Serializab
         return getResponse(text, System.getProperty("voicetext.apikey"));
     }
 
-    public void speak(String text, String apiKey) throws InterruptedException {
-        getResponse(text, apiKey).play();
+    public CompletableFuture<Void> speak(String text, String apiKey) throws InterruptedException {
+        return getResponse(text, apiKey).play();
     }
 
-    public void speak(String text) {
-        getResponse(text).play();
+    public CompletableFuture<Void> speak(String text) {
+        return getResponse(text).play();
     }
 
 
