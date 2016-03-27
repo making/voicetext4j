@@ -1,0 +1,22 @@
+language: java
+jdk: openjdk7
+branches: 
+only:
+- master
+cache:
+  directories:
+  - "$HOME/.m2"
+after_success:
+- openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/pubring.gpg.enc
+  -out $GPG_DIR/pubring.gpg -d
+- openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/secring.gpg.enc
+  -out $GPG_DIR/secring.gpg -d
+- "$GPG_DIR/publish.sh"
+env:
+  global:
+  - GPG_DIR="`pwd`/deploy"
+  - secure: eYVXk6PqB5ga4fBiK7U6u9jaie/Ze8lQ1QMfJwdlrJu3+Cvldfl19fxvaBGgQ+ZwZ9h5DM3EOEnZY4M2UFr/E+99zjWjIcFAZFGzBCIhrWdVNNc6fDl5+Xzjvi7wFVdCotzXrBQoZC39ktJL5uXmY+KoYqGoYXwhKde79TVh+d4=
+  - secure: DLWuWCClY2Gr7mT/6SQKxYqyX3r0l9sf1dJSkEWafm67ZOv9H81KqPHbSHyC90xhi80+z+T1DsXK+MRJaaPWZcYif+/3jPZWXriLdqLBSM8ZTqeao1J8xCoRMMHqw9vCElcwjghYCnUShpP70J74uEr+IsSM1hQsbgFHwsdjyAk=
+  - secure: JDmFy8CkutZKhXX3TFg+wtl448x8sU3bD1IEqKjBO7020ss9PUh2DgGwkal3ppRgPpQvEJw8XR5Cs5LxdFf2mXFTwkYcaqToeEnnV/kBM36GV6A0N9HCX8lzBfC/zAsdtuWZr8oaajeB/IbMKigVcsIX5YN0fzJ0kMJQQ73vTWc=
+  - secure: a0cHiwwYPC8jJtPBS5NOxx5fejTJ0BJ7g3wc3Y/UNjxh9VK+lAeYiufOwb00SUNB/e2svK4UdmsfU4IEeMok/n6nG3APakpsdrQq09viIHwFjXjoeWKbBPdV26kqg6WawL0o9qWUaDZEpTZlkJpJqNp1vG/ICjkYJ4DDL+5YPN4=
+  - secure: MMqIFzzA3vklj8F4rY9jxGrEE589H8ISaFzyQgpcgQJppf2uTDze1DbaDbBgc8equqjpWFgU58jh1Tt4ydlc9JnV6a5YXsvqQF/PEZ4uaGdHXeuMb7dcBew6myIT9P7fG9ktIHO13KOYECPc9Z6KLca8sBmZPUSSF5B2U3WAyGQ=
